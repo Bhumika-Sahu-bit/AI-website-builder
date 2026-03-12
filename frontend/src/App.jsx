@@ -4,7 +4,7 @@ import LandingPage from './pages/LandingPage';
 import Editor from './pages/Editor'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './components/ProtectedRoute';
 import SignIn from './pages/SignIn';
 import Login from './pages/Login';
 
@@ -19,10 +19,9 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
 
         <Route path="/edit/:projectId/folder/:folderId" element={
-          // <ProtectedRoute>
+          <ProtectedRoute>
             <Editor />
-          // {/* </ProtectedRoute> */}
-          }
+          </ProtectedRoute>}
            />
       </Routes>
 

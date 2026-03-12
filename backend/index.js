@@ -28,6 +28,10 @@ app.use('/api' , downloadRoute);
 app.use('/api/auth', authRoutes);
 app.use('/api/recent', RecentRoutes);
 
+app.get("/", (req,res) => {
+    console.log("backend is running");
+})
+
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

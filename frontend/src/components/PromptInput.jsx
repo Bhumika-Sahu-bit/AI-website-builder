@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import BASE_URL from "../service/api";
-import toast from "react-hot-toast";
+import {toast} from "react-toastify";
 
 const PromptInput = () => {
   const [prompt, setPrompt] = useState("");

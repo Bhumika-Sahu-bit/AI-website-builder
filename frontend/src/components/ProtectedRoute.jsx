@@ -2,15 +2,17 @@
 import { useAuth } from "../context/AuthContext"
 import { Navigate } from "react-router-dom"
 import { toast } from "react-toastify"
-import { useEffect } from "react"
+import { useEffect , useRef } from "react"
 
 const ProtectedRoute = ({ children }) => {
     const { user } = useAuth();
 
     const token = localStorage.getItem("token");
 
+    const toastShown = useRef(false);
+
     useEffect(() => {
-     if(!user) {
+     if(!token && !toastShown.current) {
         toast.error("🚫 Please login to continue!", {
             position: "top-center",
             style:{
@@ -20,11 +22,13 @@ const ProtectedRoute = ({ children }) => {
             },
             icon: "🔒"
         });
+
+        toastShown.current = true;
      }
-    }, [user])
+    }, [token])
 
     if(!token) {
-        return <Navigate to="/" replace={true} />
+        return <Navigate to="/login" replace />
     }
     
   return children;

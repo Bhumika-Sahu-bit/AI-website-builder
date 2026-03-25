@@ -7,7 +7,8 @@ import { useEffect , useRef } from "react"
 const ProtectedRoute = ({ children }) => {
     const { user } = useAuth();
 
-    const token = localStorage.getItem("token");
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const token = storedUser?.token;
 
     const toastShown = useRef(false);
 
@@ -27,7 +28,7 @@ const ProtectedRoute = ({ children }) => {
      }
     }, [token])
 
-    if(!token) {
+    if(!user?.token) {
         return <Navigate to="/login" replace />
     }
     
